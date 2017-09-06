@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: dde05d74de0745041aba41ea5ff3c0c2
+timeCreated: 1504400675
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Marston
+  fontNames:
+  - Marston
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1608beb6529a315408491d913d6fd31b, type: 3}
+  - {fileID: 12800000, guid: 17ff37f912356ed4ba49922ce91e79a8, type: 3}
+  - {fileID: 12800000, guid: a08afd5f0f51b7046a38ec88f77b574b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
