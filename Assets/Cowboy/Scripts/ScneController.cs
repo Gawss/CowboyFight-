@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class menuScene : MonoBehaviour {
+public class ScneController : MonoBehaviour {
 
     [SerializeField]
     public GameObject cowboyTitle;
@@ -12,22 +12,27 @@ public class menuScene : MonoBehaviour {
     public Button pressToPlay;
     public GameObject Gun;
     public GameObject target;
+    private AudioSource startGame;
 
     float timeVar01;
-    string globalState = "menu";
+    public static string globalState = "menu";
     // Use this for initialization
-    void Start ()
-    { 
+    void Start()
+    {
         Gun.SetActive(false);
         target.SetActive(false);
         Button btn = pressToPlay.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
         timeVar01 = 0;
+
+        startGame = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    void Update () {
-        if(globalState == "menu")
+    void Update()
+    {
+        Debug.Log(globalState);
+        if (globalState == "menu")
         {
             timeVar01 += Time.deltaTime;
             if (timeVar01 >= 0.4f)
@@ -43,6 +48,13 @@ public class menuScene : MonoBehaviour {
                 }
             }
         }
+        if (globalState == "move")
+        {
+            //GIRAR
+            Debug.Log("move State");
+            Gun.SetActive(true);
+            target.SetActive(true);
+        }
     }
 
     void TaskOnClick()
@@ -51,8 +63,7 @@ public class menuScene : MonoBehaviour {
         cowboyTitle.SetActive(false);
         press_toplay.SetActive(false);
         press_toplay_text.SetActive(false);
-        Gun.SetActive(true);
-        target.SetActive(true);
-        globalState = "playing";
+        startGame.Play();
+        globalState = "preFight";
     }
 }

@@ -87,6 +87,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Cowboy\Scripts\AnimController.cs" />
+    <Compile Include="Assets\Cowboy\Scripts\Challenge.cs" />
+    <Compile Include="Assets\Cowboy\Scripts\preFight.cs" />
+    <Compile Include="Assets\Cowboy\Scripts\ScneController.cs" />
+    <Compile Include="Assets\Cowboy\Scripts\SimpleActivatorMenu.cs" />
+    <Compile Include="Assets\Cowboy\Scripts\StartMove.cs" />
     <Compile Include="Assets\GoogleVR\Demos\Scripts\DemoInputManager.cs" />
     <Compile Include="Assets\GoogleVR\Demos\Scripts\DemoSceneManager.cs" />
     <Compile Include="Assets\GoogleVR\Demos\Scripts\GVRDemo\GVRDemoManager.cs" />
@@ -206,7 +212,6 @@
     <Compile Include="Assets\Let&apos;s Try Shooter\Scripts\CompletedScripts\RayCastShootComplete.cs" />
     <Compile Include="Assets\Let&apos;s Try Shooter\Scripts\CompletedScripts\RayViewerComplete.cs" />
     <Compile Include="Assets\Let&apos;s Try Shooter\Scripts\CompletedScripts\ShootableBox.cs" />
-    <Compile Include="Assets\Scripts\menuScene.cs" />
     <Compile Include="Assets\Shared Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\Shared Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\Shared Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
