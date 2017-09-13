@@ -12,6 +12,7 @@ public class ScneController : MonoBehaviour {
     public Button pressToPlay;
     public GameObject Gun;
     public GameObject target;
+    public GameObject enemy;
     private AudioSource startGame;
 
     float timeVar01;
@@ -31,7 +32,6 @@ public class ScneController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(globalState);
         if (globalState == "menu")
         {
             timeVar01 += Time.deltaTime;
@@ -55,6 +55,18 @@ public class ScneController : MonoBehaviour {
             Gun.SetActive(true);
             target.SetActive(true);
         }
+        if (globalState == "victory")
+        {
+            Gun.SetActive(false);
+            target.SetActive(false);
+            cowboyTitle.SetActive(true);
+            press_toplay.SetActive(true);
+            press_toplay_text.SetActive(true);
+            Debug.Log("Victory!");
+            enemy.SetActive(true);            
+            globalState = "menu";
+            
+        }
     }
 
     void TaskOnClick()
@@ -67,3 +79,4 @@ public class ScneController : MonoBehaviour {
         globalState = "preFight";
     }
 }
+

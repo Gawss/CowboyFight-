@@ -13,11 +13,16 @@ public class Challenge : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(ScneController.globalState == "preFight")
-        {
-            challengeToDuel.Play();
-            Debug.Log("TE RETO A UN DUELO!");
-            //Inicia animación
-        }
+
 	}
+
+    public void Sound(int soundInd)
+    {
+        switch (soundInd)
+        {
+            case 1:
+                challengeToDuel.Play();
+                break;
+        }
+    }
 }
