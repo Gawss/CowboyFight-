@@ -21,8 +21,8 @@ public class ShootableBox : MonoBehaviour {
 		if (currentHealth <= 0) 
 		{
 			//if health has fallen below zero, deactivate it 
-			gameObject.SetActive (false);
-            ScneController.globalState = "victory";
+			//gameObject.SetActive (false);
+            ScneController.globalState = "enemyIsDead";
 		}
 	}
 }

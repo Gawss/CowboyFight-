@@ -14,7 +14,9 @@ public class RayCastShootComplete : MonoBehaviour {
 	private AudioSource gunAudio;										// Reference to the audio source which will play our shooting sound effect
 	private LineRenderer laserLine;										// Reference to the LineRenderer component which will display our laserline
 	private float nextFire;												// Float to store the time the player will be allowed to fire again, after firing
+    public GameObject gun;
 
+    bool hitState = false;
 
 	void Start () 
 	{
@@ -53,7 +55,7 @@ public class RayCastShootComplete : MonoBehaviour {
 			if (Physics.Raycast (rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
 			{
 				// Set the end position for our laser line 
-				laserLine.SetPosition (1, hit.point);
+				laserLine.SetPosition (1, hit.point);                
 
 				// Get a reference to a health script attached to the collider we hit
 				ShootableBox health = hit.collider.GetComponent<ShootableBox>();
@@ -76,8 +78,20 @@ public class RayCastShootComplete : MonoBehaviour {
 			{
 				// If we did not hit anything, set the end of the line to a position directly in front of the camera at the distance of weaponRange
                 laserLine.SetPosition (1, rayOrigin + (fpsCam.transform.forward * weaponRange));
-			}
+            }
 		}
+        if(hitState == true)
+        {
+            if (gun.transform.position != fpsCam.transform.forward * weaponRange)
+            {
+                Vector3 temp = fpsCam.transform.forward;
+                gun.transform.position += temp*0.5f;
+            }
+            else
+            {
+                gun.SetActive(false);
+            }
+        }
 	}
 
 
@@ -85,12 +99,15 @@ public class RayCastShootComplete : MonoBehaviour {
 	{
 		// Play the shooting sound effect
 		gunAudio.Play ();
+        gun.SetActive(true);
+        gun.transform.position = gunEnd.position;
+        // Turn on our line renderer
+        laserLine.enabled = false;
 
-		// Turn on our line renderer
-		laserLine.enabled = true;
+        hitState = true;
 
-		//Wait for .07 seconds
-		yield return shotDuration;
+        //Wait for .07 seconds
+        yield return shotDuration;
 
 		// Deactivate our line renderer after waiting
 		laserLine.enabled = false;

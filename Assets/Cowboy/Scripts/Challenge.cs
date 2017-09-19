@@ -21,7 +21,18 @@ public class Challenge : MonoBehaviour {
         switch (soundInd)
         {
             case 1:
+                Debug.Log("I challenge u to a Duel!");
                 challengeToDuel.Play();
+                break;
+        }
+    }
+    public void enemyVictory(int enemyVic)
+    {
+        switch (enemyVic)
+        {
+            case 1:
+                Debug.Log("Enemy Wins");
+                ScneController.globalState = "defeat";
                 break;
         }
     }
