@@ -92,8 +92,9 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 3ecea0c2e43f5d97a17c441bfcf59a7d Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingBehaviour
 05d7814a54ff9d6b4b99cd2ce7421f90 Assembly-CSharp.dll:.TranslateScrollEffect
 ae8ffb8c4d496c33aced3230420b614c Assembly-CSharp.dll:.GvrArmModel
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Challenge
+6543a50acbdd13415fe024ca2cc8d4d1 Assembly-CSharp.dll:.Challenge
 03bbed44bf0809da9eb453e702673301 Assembly-CSharp.dll:.GvrAudioRoom
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.endGame
 6c156248975c65e334daa4cbfba64bd1 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.TimedObjectActivator
 7145f8261763e133c64c6e3d29fe65ca Assembly-CSharp.dll:.DemoInputManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.GvrEditorEmulator
@@ -146,6 +147,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.Spa
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.DragRigidbody
 64e53bc128400f563a86ade43816f1c3 Assembly-CSharp.dll:.FloatTile
 78ebae5ed9b3edeb216da437b99754a4 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.Joystick
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.victoryScript
 149e538468c9a609cf26b23682c996c7 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.PlatformSpecificContent
 4df86f437a61b08c14fd0adff88ddf71 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.ActivateTrigger
 a2efb0db652b8114d1ae7dd9a600d626 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.InputAxisScrollbar
@@ -234,7 +236,5 @@ c5839a4d51b9b5220e5cc04a930d6b3f Assembly-CSharp.dll:.UIFadeTransition
 e399fc54e753911801f12ac57c8fc414 Assembly-CSharp.dll:.GVRDemoManager
 f1dced04f168103741226c31e59bf1c5 Assembly-CSharp.dll:.Tab
 d885ad79a6ef5bfe2ce10637aac0b8a0 Assembly-CSharp.dll:GVRSample.AutoPlayVideo
-0f3d4bb7128a287827d041c696039525 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.AutoMobileShaderSwitch
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.victory
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.endGame
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.victoryScript
+0f3d4bb7128a287827d041c696039525 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.AutoMobileShaderSwitch

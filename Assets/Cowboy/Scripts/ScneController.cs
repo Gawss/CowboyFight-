@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VR;
 
 public class ScneController : MonoBehaviour {
 
@@ -37,15 +38,15 @@ public class ScneController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(globalState);
         if (globalState == "menu")
         {
+            ResetplayerPosition();
+            VRDevice.DisableAutoVRCameraTracking(camera, true);
             targetPointer.SetActive(false);
             GVrPointer.SetActive(true);
             press_toplay.SetActive(true);
             Button btn = pressToPlay.GetComponent<Button>();
             btn.onClick.AddListener(TaskOnClick);
-            ResetplayerPosition();
             victoryText.SetActive(false);
             defeatText.SetActive(false);
             Gun.SetActive(false);
@@ -60,7 +61,6 @@ public class ScneController : MonoBehaviour {
                 timeVar01 = 0f;
                 if (press_toplay_text.activeSelf == true)
                 {
-                    Debug.Log("Desactivar");
                     press_toplay_text.SetActive(false);
                 }
                 else
@@ -71,23 +71,26 @@ public class ScneController : MonoBehaviour {
         }
         if (globalState == "move")
         {
+            VRDevice.DisableAutoVRCameraTracking(camera, false);
             rotIndic.SetActive(true);
             rotationTrigger.SetActive(true);
             rotSensor.SetActive(true);
         }
         if(globalState == "timeToWalk")
         {
+            VRDevice.DisableAutoVRCameraTracking(camera, true);
             camController.GetComponent<Animator>().enabled = true;
             rotIndic.SetActive(false);
             rotSensor.SetActive(false);
             rotationTrigger.SetActive(false);
         }
         if(globalState == "countDown")
-        {
-               
+        {            
+            
         }
         if (globalState == "Fighting!!")
         {
+            VRDevice.DisableAutoVRCameraTracking(camera, false);
             targetPointer.SetActive(true);
             enemy.GetComponent<CapsuleCollider>().enabled = true;
             GVrPointer.SetActive(false);
@@ -98,7 +101,6 @@ public class ScneController : MonoBehaviour {
         {
             enemy.GetComponent<CapsuleCollider>().enabled = false;
             victoryText.SetActive(true);
-            Debug.Log("Victory!");
         }
         if(globalState == "defeat")
         {

@@ -5,10 +5,12 @@ using UnityEngine;
 public class Challenge : MonoBehaviour {
 
     private AudioSource challengeToDuel;
+    [SerializeField] private AudioSource gunShot;
 
     // Use this for initialization
     void Start () {
         challengeToDuel = GetComponent<AudioSource>();
+        gunShot = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -21,7 +23,6 @@ public class Challenge : MonoBehaviour {
         switch (soundInd)
         {
             case 1:
-                Debug.Log("I challenge u to a Duel!");
                 challengeToDuel.Play();
                 break;
         }
@@ -31,8 +32,16 @@ public class Challenge : MonoBehaviour {
         switch (enemyVic)
         {
             case 1:
-                Debug.Log("Enemy Wins");
                 ScneController.globalState = "defeat";
+                break;
+        }
+    }
+    public void gunSound(int gunsound)
+    {
+        switch (gunsound)
+        {
+            case 1:
+                gunShot.Play();
                 break;
         }
     }
