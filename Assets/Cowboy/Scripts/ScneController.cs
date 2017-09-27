@@ -8,9 +8,7 @@ public class ScneController : MonoBehaviour {
 
     [SerializeField]
     public GameObject cowboyTitle;
-    public GameObject press_toplay;
     public GameObject press_toplay_text;
-    public Button pressToPlay;
     public GameObject Gun;
     public GameObject enemy;
     private AudioSource startGame;
@@ -40,13 +38,11 @@ public class ScneController : MonoBehaviour {
     {
         if (globalState == "menu")
         {
+
             ResetplayerPosition();
             VRDevice.DisableAutoVRCameraTracking(camera, true);
             targetPointer.SetActive(false);
             GVrPointer.SetActive(true);
-            press_toplay.SetActive(true);
-            Button btn = pressToPlay.GetComponent<Button>();
-            btn.onClick.AddListener(TaskOnClick);
             victoryText.SetActive(false);
             defeatText.SetActive(false);
             Gun.SetActive(false);
@@ -67,6 +63,11 @@ public class ScneController : MonoBehaviour {
                 {
                     press_toplay_text.SetActive(true);
                 }
+            }
+
+            if (Input.GetButtonDown("Fire1") || OVRInput.GetDown(OVRInput.Button.One))
+            {
+                TaskOnClick();
             }
         }
         if (globalState == "move")
@@ -119,7 +120,7 @@ public class ScneController : MonoBehaviour {
     void TaskOnClick()
     {
         cowboyTitle.SetActive(false);
-        press_toplay.SetActive(false);
+        //press_toplay.SetActive(false);
         press_toplay_text.SetActive(false);
         startGame.Play();
         globalState = "preFight";

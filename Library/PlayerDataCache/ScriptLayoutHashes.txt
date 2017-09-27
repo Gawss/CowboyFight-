@@ -218,7 +218,7 @@ f12b46990184302ae413ff95cea31566 Assembly-CSharp.dll:.FadeScrollEffect
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TileScrollEffect
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.VideoControlsManager
 873bdd597bbca93eeb86bbec65ad3cd1 Assembly-CSharp.dll:.GvrPointerGraphicRaycaster
-d6d283b911493dc3fc29df7efbbe63f2 Assembly-CSharp.dll:.ScneController
+2917bcdc5c1499039b3cd323d4eaad7e Assembly-CSharp.dll:.ScneController
 5d708ead9a8a3f8af542fec349ed718c Assembly-CSharp.dll:Gvr.Internal.EmulatorConfig
 a8b185f93b85036e13e3f553c802615a Assembly-CSharp.dll:.GvrTooltip
 764d2ecb131d46720e1b8d63b8f7c2ba Assembly-CSharp.dll:.KeyboardDelegateExample
