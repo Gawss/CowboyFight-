@@ -12,6 +12,8 @@ public class AnimController : MonoBehaviour {
     private Animator camController;
     [SerializeField]
     private Animator fadeOut;
+
+    bool upSpeed = false;
     // Use this for initialization
     void Start () {
         
@@ -19,6 +21,8 @@ public class AnimController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //Debug.Log(enemyAnimation.speed);
+
         if(ScneController.globalState == "menu")
         {
             enemyAnimation.SetInteger("enemyAnim", 0);
@@ -45,6 +49,17 @@ public class AnimController : MonoBehaviour {
             enemyAnimation.SetInteger("enemyAnim", 3);
             camController.SetInteger("camController", 1);
             countDown.SetInteger("countDown", 0);
+
+            if (upSpeed == false)
+            {
+                if (ScneController.numVictories > 0)
+                {
+                    //enemyAnimation.speed = enemyAnimation.speed + ScneController.numVictories;
+                    enemyAnimation.speed = 70;
+                    upSpeed = true;
+                }
+            }
+            
         }
         if(ScneController.globalState == "shooting")
         {
@@ -52,6 +67,8 @@ public class AnimController : MonoBehaviour {
         }
         if (ScneController.globalState == "enemyIsDead")
         {
+            upSpeed = true;
+            //enemyAnimation.speed = 1;
             enemyAnimation.SetInteger("enemyAnim", 5);
         }
         if (ScneController.globalState == "victory")

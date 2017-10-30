@@ -5,7 +5,8 @@ using UnityEngine;
 public class Challenge : MonoBehaviour {
 
     private AudioSource challengeToDuel;
-    [SerializeField] private AudioSource gunShot;
+    [SerializeField]
+    private AudioSource gunShot;
 
     // Use this for initialization
     void Start () {
@@ -41,7 +42,9 @@ public class Challenge : MonoBehaviour {
         switch (gunsound)
         {
             case 1:
-                gunShot.Play();
+                //gunShot.Play();
+                Debug.Log("DISPARO_Sound");
+                gunsound = 0;
                 break;
         }
     }

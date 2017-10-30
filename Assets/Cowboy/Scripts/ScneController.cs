@@ -21,24 +21,40 @@ public class ScneController : MonoBehaviour {
     public GameObject defeatText;
     public GameObject GVrPointer;
     public GameObject targetPointer;
+
+    public GameObject killingSpreeNum;
+
+    public GameObject enemysCapturedNum;
     [SerializeField]
     private Camera camera;
 
     float timeVar01;
     public static string globalState = "menu";
+    public static bool gunSoundState = false;
+
+    Text killSpreeNum;
+    int numKills = 0;
+    Text enemysCaptured_Num;
+    public static int numVictories = 0;
+
+    bool killsCounter = false;
+
     // Use this for initialization
     void Start()
     {
         timeVar01 = 0;
         startGame = GetComponent<AudioSource>();
+        killSpreeNum = killingSpreeNum.GetComponent<Text>();
+        enemysCaptured_Num = enemysCapturedNum.GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        enemysCaptured_Num.text = numVictories.ToString();
+        killSpreeNum.text = numKills.ToString();   
         if (globalState == "menu")
         {
-
             ResetplayerPosition();
             VRDevice.DisableAutoVRCameraTracking(camera, true);
             targetPointer.SetActive(false);
@@ -65,7 +81,7 @@ public class ScneController : MonoBehaviour {
                 }
             }
 
-            if (Input.GetButtonDown("Fire1") || OVRInput.GetDown(OVRInput.Button.One))
+            if (Input.GetButtonDown("Fire1"))
             {
                 TaskOnClick();
             }
@@ -102,11 +118,20 @@ public class ScneController : MonoBehaviour {
         {
             enemy.GetComponent<CapsuleCollider>().enabled = false;
             victoryText.SetActive(true);
+
+            numKills = numKills + Random.Range(0,10);
+            if (killsCounter == false)
+            {
+                numVictories = numVictories + 1;
+                killsCounter = true;
+            }
         }
         if(globalState == "defeat")
         {
             targetPointer.SetActive(false);
             defeatText.SetActive(true);
+            numKills = 0;
+            numVictories = 0;
         }
         if(globalState == "battleEnd")
         {
@@ -114,6 +139,7 @@ public class ScneController : MonoBehaviour {
             cowboyTitle.SetActive(true);
             enemy.SetActive(true);
             globalState = "menu";
+            killsCounter = false;
         }
     }
 
