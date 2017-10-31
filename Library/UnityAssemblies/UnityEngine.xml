@@ -4608,12 +4608,12 @@ Note: Using raw JNI functions requires advanced knowledge of the Android Java Na
     </member>
     <member name="P:UnityEngine.AnimatorControllerParameter.defaultFloat">
       <summary>
-        <para>The default bool value for the parameter.</para>
+        <para>The default float value for the parameter.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.AnimatorControllerParameter.defaultInt">
       <summary>
-        <para>The default bool value for the parameter.</para>
+        <para>The default int value for the parameter.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.AnimatorControllerParameter.name">
@@ -6097,6 +6097,14 @@ See Also: WWW.assetBundle, WWW.LoadFromCacheOrDownload.</param>
         <para>Return all asset names in the AssetBundle.</para>
       </summary>
     </member>
+    <member name="M:UnityEngine.AssetBundle.GetAllLoadedAssetBundles">
+      <summary>
+        <para>To use when you need to get a list of all the currently loaded Asset Bundles.</para>
+      </summary>
+      <returns>
+        <para>Returns IEnumerable&lt;AssetBundle&gt; of all currently loaded Asset Bundles.</para>
+      </returns>
+    </member>
     <member name="M:UnityEngine.AssetBundle.GetAllScenePaths">
       <summary>
         <para>Return all the scene asset paths (paths to *.unity assets) in the AssetBundle.</para>
@@ -6268,6 +6276,12 @@ See Also: WWW.assetBundle, WWW.LoadFromCacheOrDownload.</param>
         <para>Unloads all assets in the bundle.</para>
       </summary>
       <param name="unloadAllLoadedObjects"></param>
+    </member>
+    <member name="M:UnityEngine.AssetBundle.UnloadAllAssetBundles(System.Boolean)">
+      <summary>
+        <para>Unloads all currently loaded Asset Bundles.</para>
+      </summary>
+      <param name="unloadAllObjects">Determines whether the current instances of objects loaded from Asset Bundles will also be unloaded.</param>
     </member>
     <member name="T:UnityEngine.AssetBundleCreateRequest">
       <summary>
@@ -8790,7 +8804,7 @@ See Also: WWW.assetBundle, WWW.LoadFromCacheOrDownload.</param>
     </member>
     <member name="P:UnityEngine.Caching.currentCacheForWriting">
       <summary>
-        <para>Returns the current cache in which AssetBundles should be cached.</para>
+        <para>Gets or sets the current cache in which AssetBundles should be cached.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Caching.defaultCache">
@@ -8805,7 +8819,7 @@ See Also: WWW.assetBundle, WWW.LoadFromCacheOrDownload.</param>
     </member>
     <member name="P:UnityEngine.Caching.ready">
       <summary>
-        <para>Is caching ready?</para>
+        <para>Returns true if Caching system is ready for use.</para>
       </summary>
     </member>
     <member name="M:UnityEngine.Caching.AddCache(System.String)">
@@ -8838,7 +8852,7 @@ See Also: WWW.assetBundle, WWW.LoadFromCacheOrDownload.</param>
       <param name="assetBundleName">The AssetBundle name.</param>
       <param name="hash">Version needs to be cleaned.</param>
       <returns>
-        <para>Returns true when cache clearing succeeded.</para>
+        <para>Returns true when cache clearing succeeded.  Can return false if any cached bundle is in use.</para>
       </returns>
     </member>
     <member name="M:UnityEngine.Caching.ClearOtherCachedVersions(System.String,UnityEngine.Hash128)">
@@ -8886,10 +8900,20 @@ See Also: WWW.assetBundle, WWW.LoadFromCacheOrDownload.</param>
       <summary>
         <para>Checks if an AssetBundle is cached.</para>
       </summary>
-      <param name="string">Url The filename of the AssetBundle. Domain and path information are stripped from this string automatically.</param>
-      <param name="int">Version The version number of the AssetBundle to check for. Negative values are not allowed.</param>
-      <param name="url"></param>
-      <param name="version"></param>
+      <param name="url">The filename of the AssetBundle. Domain and path information are stripped from this string automatically.</param>
+      <param name="version">The version number of the AssetBundle to check for. Negative values are not allowed.</param>
+      <param name="hash">Hash128 which is used as the version of the AssetBundle.</param>
+      <returns>
+        <para>True if an AssetBundle matching the url and version parameters has previously been loaded using WWW.LoadFromCacheOrDownload() and is currently stored in the cache. Returns false if the AssetBundle is not in cache, either because it has been flushed from the cache or was never loaded using the Caching API.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Caching.IsVersionCached(System.String,UnityEngine.Hash128)">
+      <summary>
+        <para>Checks if an AssetBundle is cached.</para>
+      </summary>
+      <param name="url">The filename of the AssetBundle. Domain and path information are stripped from this string automatically.</param>
+      <param name="version">The version number of the AssetBundle to check for. Negative values are not allowed.</param>
+      <param name="hash">Hash128 which is used as the version of the AssetBundle.</param>
       <returns>
         <para>True if an AssetBundle matching the url and version parameters has previously been loaded using WWW.LoadFromCacheOrDownload() and is currently stored in the cache. Returns false if the AssetBundle is not in cache, either because it has been flushed from the cache or was never loaded using the Caching API.</para>
       </returns>
@@ -17147,7 +17171,7 @@ Changing this value affects any subsequently loaded shaders. Initially this valu
         <para>Copies source texture into destination render texture with a shader.</para>
       </summary>
       <param name="source">Source texture.</param>
-      <param name="dest">Destination RenderTexture, or null to blit directly to screen.</param>
+      <param name="dest">The destination RenderTexture. Set this to null to blit directly to screen. See description for more information.</param>
       <param name="mat">Material to use. Material's shader could do some post-processing effect, for example.</param>
       <param name="pass">If -1 (default), draws all passes in the material. Otherwise, draws given pass only.</param>
       <param name="offset">Offset applied to the source texture coordinate.</param>
@@ -17158,7 +17182,7 @@ Changing this value affects any subsequently loaded shaders. Initially this valu
         <para>Copies source texture into destination render texture with a shader.</para>
       </summary>
       <param name="source">Source texture.</param>
-      <param name="dest">Destination RenderTexture, or null to blit directly to screen.</param>
+      <param name="dest">The destination RenderTexture. Set this to null to blit directly to screen. See description for more information.</param>
       <param name="mat">Material to use. Material's shader could do some post-processing effect, for example.</param>
       <param name="pass">If -1 (default), draws all passes in the material. Otherwise, draws given pass only.</param>
       <param name="offset">Offset applied to the source texture coordinate.</param>
@@ -17169,7 +17193,7 @@ Changing this value affects any subsequently loaded shaders. Initially this valu
         <para>Copies source texture into destination render texture with a shader.</para>
       </summary>
       <param name="source">Source texture.</param>
-      <param name="dest">Destination RenderTexture, or null to blit directly to screen.</param>
+      <param name="dest">The destination RenderTexture. Set this to null to blit directly to screen. See description for more information.</param>
       <param name="mat">Material to use. Material's shader could do some post-processing effect, for example.</param>
       <param name="pass">If -1 (default), draws all passes in the material. Otherwise, draws given pass only.</param>
       <param name="offset">Offset applied to the source texture coordinate.</param>
@@ -17180,7 +17204,7 @@ Changing this value affects any subsequently loaded shaders. Initially this valu
         <para>Copies source texture into destination render texture with a shader.</para>
       </summary>
       <param name="source">Source texture.</param>
-      <param name="dest">Destination RenderTexture, or null to blit directly to screen.</param>
+      <param name="dest">The destination RenderTexture. Set this to null to blit directly to screen. See description for more information.</param>
       <param name="mat">Material to use. Material's shader could do some post-processing effect, for example.</param>
       <param name="pass">If -1 (default), draws all passes in the material. Otherwise, draws given pass only.</param>
       <param name="offset">Offset applied to the source texture coordinate.</param>
@@ -19971,7 +19995,7 @@ GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.</param>
     </member>
     <member name="M:UnityEngine.GUILayout.Button(UnityEngine.Texture,UnityEngine.GUILayoutOption[])">
       <summary>
-        <para>Make a single press button. The user clicks them and something happens immediately.</para>
+        <para>Make a single press button.</para>
       </summary>
       <param name="text">Text to display on the button.</param>
       <param name="image">Texture to display on the button.</param>
@@ -19986,7 +20010,7 @@ GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.</param>
     </member>
     <member name="M:UnityEngine.GUILayout.Button(System.String,UnityEngine.GUILayoutOption[])">
       <summary>
-        <para>Make a single press button. The user clicks them and something happens immediately.</para>
+        <para>Make a single press button.</para>
       </summary>
       <param name="text">Text to display on the button.</param>
       <param name="image">Texture to display on the button.</param>
@@ -20001,7 +20025,7 @@ GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.</param>
     </member>
     <member name="M:UnityEngine.GUILayout.Button(UnityEngine.GUIContent,UnityEngine.GUILayoutOption[])">
       <summary>
-        <para>Make a single press button. The user clicks them and something happens immediately.</para>
+        <para>Make a single press button.</para>
       </summary>
       <param name="text">Text to display on the button.</param>
       <param name="image">Texture to display on the button.</param>
@@ -20016,7 +20040,7 @@ GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.</param>
     </member>
     <member name="M:UnityEngine.GUILayout.Button(UnityEngine.Texture,UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
       <summary>
-        <para>Make a single press button. The user clicks them and something happens immediately.</para>
+        <para>Make a single press button.</para>
       </summary>
       <param name="text">Text to display on the button.</param>
       <param name="image">Texture to display on the button.</param>
@@ -20031,7 +20055,7 @@ GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.</param>
     </member>
     <member name="M:UnityEngine.GUILayout.Button(System.String,UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
       <summary>
-        <para>Make a single press button. The user clicks them and something happens immediately.</para>
+        <para>Make a single press button.</para>
       </summary>
       <param name="text">Text to display on the button.</param>
       <param name="image">Texture to display on the button.</param>
@@ -20046,7 +20070,7 @@ GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.</param>
     </member>
     <member name="M:UnityEngine.GUILayout.Button(UnityEngine.GUIContent,UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
       <summary>
-        <para>Make a single press button. The user clicks them and something happens immediately.</para>
+        <para>Make a single press button.</para>
       </summary>
       <param name="text">Text to display on the button.</param>
       <param name="image">Texture to display on the button.</param>
@@ -24056,9 +24080,19 @@ Only usable on Android, Windows Phone or Windows Tablets.</para>
         <para>iPad Pro 9.7", first generation.</para>
       </summary>
     </member>
+    <member name="F:UnityEngine.iOS.DeviceGeneration.iPadPro10Inch2Gen">
+      <summary>
+        <para>iPad Pro 10.5", second generation 10" iPad.</para>
+      </summary>
+    </member>
     <member name="F:UnityEngine.iOS.DeviceGeneration.iPadPro1Gen">
       <summary>
-        <para>iPad Pro, first generation.</para>
+        <para>iPad Pro 12.9", first generation.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.iOS.DeviceGeneration.iPadPro2Gen">
+      <summary>
+        <para>iPad Pro 12.9", second generation.</para>
       </summary>
     </member>
     <member name="F:UnityEngine.iOS.DeviceGeneration.iPadUnknown">
@@ -30816,7 +30850,7 @@ Servers must periodically acknowledge data packets received over channels with r
     </member>
     <member name="P:UnityEngine.Networking.ConnectionConfig.AcksType">
       <summary>
-        <para>Determines the size of the buffer used to store reliable messages that are waiting for acknowledgement. It can be set to Ack32, Ack64, Ack96, or Ack128. Depends of this setting buffer can hold 32, 64, 96, or 128 messages. Default value = Ack32.
+        <para>Determines the size of the buffer used to store reliable messages that are waiting for acknowledgement. It can be set to Acks32, Acks64, Acks96, or Acks128. Depends of this setting buffer can hold 32, 64, 96, or 128 messages. Default value = Ack32.
 
 Messages sent on reliable quality of service channels are stored in a special buffer while they wait for acknowledgement from the peer. This buffer can be either 32, 64, 96 or 128 positions long. It is recommended to begin with this value set to Ack32, which defines a buffer up to 32 messages in size. If you receive NoResources errors often when you send reliable messages, change this value to the next possible size.</para>
       </summary>
@@ -35470,6 +35504,11 @@ If a string, the string will be converted to raw bytes via &lt;a href="http:msdn
         <para>The duration of the particle system in seconds.</para>
       </summary>
     </member>
+    <member name="P:UnityEngine.ParticleSystem.MainModule.emitterVelocityMode">
+      <summary>
+        <para>Control how the Particle System calculates its velocity, when moving in the world.</para>
+      </summary>
+    </member>
     <member name="P:UnityEngine.ParticleSystem.MainModule.gravityModifier">
       <summary>
         <para>Scale applied to the gravity, defined by Physics.gravity.</para>
@@ -37091,6 +37130,21 @@ The Noise Module allows you to apply turbulence to the movement of your particle
         <para>Emit over time.</para>
       </summary>
     </member>
+    <member name="T:UnityEngine.ParticleSystemEmitterVelocityMode">
+      <summary>
+        <para>Control how a Particle System calcualtes its velocity.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.ParticleSystemEmitterVelocityMode.Rigidbody">
+      <summary>
+        <para>Calculate the Particle System velocity by using a Rigidbody or Rigidbody2D component, if one exists on the Game Object.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.ParticleSystemEmitterVelocityMode.Transform">
+      <summary>
+        <para>Calculate the Particle System velocity by using the Transform component.</para>
+      </summary>
+    </member>
     <member name="T:UnityEngine.ParticleSystemGradientMode">
       <summary>
         <para>The particle gradient mode (Shuriken).</para>
@@ -38383,9 +38437,11 @@ To get the current particle age, simply multiply X by Y.</para>
       <summary>
         <para>Makes the collision detection system ignore all collisions between collider1 and collider2.</para>
       </summary>
+      <param name="start">Start point.</param>
+      <param name="end">End point.</param>
+      <param name="ignore">Ignore collision.</param>
       <param name="collider1"></param>
       <param name="collider2"></param>
-      <param name="ignore"></param>
     </member>
     <member name="M:UnityEngine.Physics.IgnoreLayerCollision(System.Int32,System.Int32,System.Boolean)">
       <summary>
@@ -40408,6 +40464,23 @@ Note that IgnoreLayerCollision will reset the trigger state of affected collider
       <summary>
         <para>Extensions for all the types that implements IPlayable.</para>
       </summary>
+    </member>
+    <member name="M:UnityEngine.Playables.PlayableExtensions.AddInput(U,V,System.Int32)">
+      <summary>
+        <para>Add a new input port and connect the output port of a Playable to this new port.</para>
+      </summary>
+      <param name="playable">The Playable used by this operation.</param>
+      <param name="sourcePlayable">The Playable to connect to.</param>
+      <param name="sourceOutputIndex">The output port of the Playable.</param>
+    </member>
+    <member name="M:UnityEngine.Playables.PlayableExtensions.ConnectInput(U,System.Int32,V,System.Int32)">
+      <summary>
+        <para>Connect the output port of a Playable to one of the input ports.</para>
+      </summary>
+      <param name="playable">The Playable used by this operation.</param>
+      <param name="inputIndex">The input port index.</param>
+      <param name="sourcePlayable">The Playable to connect to.</param>
+      <param name="sourceOutputIndex">The output port of the Playable.</param>
     </member>
     <member name="M:UnityEngine.Playables.PlayableExtensions.Destroy(U)">
       <summary>
@@ -43085,13 +43158,13 @@ frame. Minimum value is 1 and maximum is 33.</para>
       <summary>
         <para>Get the corners of the calculated rectangle in the local space of its Transform.</para>
       </summary>
-      <param name="fourCornersArray">Array that corners should be filled into.</param>
+      <param name="fourCornersArray">The array that corners are filled into.</param>
     </member>
     <member name="M:UnityEngine.RectTransform.GetWorldCorners(UnityEngine.Vector3[])">
       <summary>
         <para>Get the corners of the calculated rectangle in world space.</para>
       </summary>
-      <param name="fourCornersArray">Array that corners should be filled into.</param>
+      <param name="fourCornersArray">The ray that corners are filled into.</param>
     </member>
     <member name="T:UnityEngine.RectTransform.ReapplyDrivenProperties">
       <summary>
@@ -46637,6 +46710,11 @@ Updating a probe's cubemap is a costly operation. Unity needs to render the enti
         <para>Volume extent of a 3D render texture or number of slices of array texture.</para>
       </summary>
     </member>
+    <member name="P:UnityEngine.RenderTexture.vrUsage">
+      <summary>
+        <para>If this RenderTexture is a VR eye texture used in stereoscopic rendering, this property decides what special rendering occurs, if any.</para>
+      </summary>
+    </member>
     <member name="P:UnityEngine.RenderTexture.width">
       <summary>
         <para>The width of the render texture in pixels.</para>
@@ -46747,6 +46825,7 @@ Updating a probe's cubemap is a costly operation. Unity needs to render the enti
       <param name="memorylessMode">Render texture memoryless mode.</param>
       <param name="desc">Use this RenderTextureDesc for the settings when creating the temporary RenderTexture.</param>
       <param name="antiAliasing"></param>
+      <param name="vrUsage"></param>
     </member>
     <member name="M:UnityEngine.RenderTexture.GetTemporary(System.Int32,System.Int32,System.Int32,UnityEngine.RenderTextureFormat,UnityEngine.RenderTextureReadWrite,System.Int32)">
       <summary>
@@ -46761,6 +46840,7 @@ Updating a probe's cubemap is a costly operation. Unity needs to render the enti
       <param name="memorylessMode">Render texture memoryless mode.</param>
       <param name="desc">Use this RenderTextureDesc for the settings when creating the temporary RenderTexture.</param>
       <param name="antiAliasing"></param>
+      <param name="vrUsage"></param>
     </member>
     <member name="M:UnityEngine.RenderTexture.IsCreated">
       <summary>
@@ -48687,7 +48767,7 @@ A scene may be invalid if, for example, you tried to open a scene that does not 
     </member>
     <member name="?:UnityEngine.SceneManagement.SceneManager.sceneLoaded(UnityEngine.Events.UnityAction`2&lt;UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode&gt;)">
       <summary>
-        <para>Add a delegate to this to get notifications when a scene has loaded</para>
+        <para>Add a delegate to this to get notifications when a scene has loaded.</para>
       </summary>
       <param name="value"></param>
     </member>
@@ -55398,14 +55478,9 @@ Rotation of the tree on X-Z plane (in radians).</para>
     </member>
     <member name="M:UnityEngine.Vector3.Normalize(UnityEngine.Vector3)">
       <summary>
-        <para></para>
-      </summary>
-      <param name="value"></param>
-    </member>
-    <member name="M:UnityEngine.Vector3.Normalize">
-      <summary>
         <para>Makes this vector have a magnitude of 1.</para>
       </summary>
+      <param name="value"></param>
     </member>
     <member name="?:UnityEngine.Vector3.op_Divide(UnityEngine.Vector3,System.Single)">
       <summary>
@@ -58790,6 +58865,16 @@ This function calls &lt;a href=" https:msdn.microsoft.comen-uslibrarywindowsdesk
         <para>Gets the motor torque of the joint given the specified timestep.</para>
       </summary>
       <param name="timeStep">The time to calculate the motor torque for.</param>
+    </member>
+    <member name="T:UnityEngine.Windows.CrashReporting">
+      <summary>
+        <para>Exposes useful information related to crash reporting on Windows platforms.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Windows.CrashReporting.crashReportFolder">
+      <summary>
+        <para>Returns the path to the crash report folder on Windows.</para>
+      </summary>
     </member>
     <member name="T:UnityEngine.Windows.Speech.ConfidenceLevel">
       <summary>

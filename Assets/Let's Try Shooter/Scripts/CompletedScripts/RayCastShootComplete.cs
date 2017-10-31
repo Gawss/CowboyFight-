@@ -34,7 +34,7 @@ public class RayCastShootComplete : MonoBehaviour {
 	void Update () 
 	{
 		// Check if the player has pressed the fire button and if enough time has elapsed since they last fired
-		if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
+		if (Input.GetButtonDown("Fire1") || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) && Time.time > nextFire)
 		{
 			// Update the time when our player can fire next
 			nextFire = Time.time + fireRate;

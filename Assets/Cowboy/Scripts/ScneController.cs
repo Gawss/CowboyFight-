@@ -81,7 +81,7 @@ public class ScneController : MonoBehaviour {
                 }
             }
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
             {
                 TaskOnClick();
             }
