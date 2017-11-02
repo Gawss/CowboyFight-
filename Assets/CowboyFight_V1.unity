@@ -163,7 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb5dd43baba2d4dc1bab789615567e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawDebugRays: 0
   raycasterEventMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -295,8 +294,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 6.3525543, z: 1}
-  m_Center: {x: 0, y: -0.47956467, z: 0}
+  m_Size: {x: 0.8769262, y: 6.3525543, z: 0.17958076}
+  m_Center: {x: 0.061536774, y: -0.47956467, z: -0.41020963}
 --- !u!114 &54648883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,8 +348,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.25952047, y: 1, z: 6.168676}
+  m_Center: {x: -0.37023985, y: 0.0000000020756612, z: -0.0000019073486}
 --- !u!4 &104568913
 Transform:
   m_ObjectHideFlags: 0
@@ -358,7 +357,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 104568911}
   m_LocalRotation: {x: 0.026586886, y: -0.7066068, z: -0.026586886, w: 0.7066068}
-  m_LocalPosition: {x: 48.870003, y: 50.12, z: 70.25}
+  m_LocalPosition: {x: 48.870003, y: 50.12, z: 68.4}
   m_LocalScale: {x: 0.50000036, y: 0.49999994, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1925,7 +1924,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa952cbcc0eb13d4ca558b6da550ff55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumAlpha: 1
   attachmentPrefabs: []
   touchPadColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   appButtonColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
@@ -1939,6 +1937,7 @@ MonoBehaviour:
     homeButton: 0
     touching: 0
     touchPos: {x: 0.5, y: 0.5}
+  maximumAlpha: 1
 --- !u!23 &664466207
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2158,8 +2157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b185dc34a16a7487e99971711f86abc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pose: 1
-  armModel: {fileID: 0}
 --- !u!114 &688258693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2172,19 +2169,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ee199cdc1304b2090f019e4f488674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reticle: {fileID: 0}
+  controller: {fileID: 664466205}
   laserColor: {r: 1, g: 1, b: 1, a: 0.25}
   laserColorEnd: {r: 1, g: 1, b: 1, a: 0}
   maxLaserDistance: 0.75
-  allowRotation: 1
-  reticle: {fileID: 1735643753}
-  doesReticleFaceCamera:
-    alongXAxis: 1
-    alongYAxis: 1
-    alongZAxis: 1
-  controller: {fileID: 664466205}
   lerpSpeed: 20
   lerpThreshold: 1.5
-  reticleSortingOrder: 0
+  shrinkLaser: 1
+  shrunkScale: 0.2
+  beginShrinkAngleDegrees: 0
+  endShrinkAngleDegrees: 2
 --- !u!114 &688258694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2199,8 +2194,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raycastMode: 0
   overridePointerCamera: {fileID: 0}
+  drawDebugRays: 0
   maxPointerDistance: 20
   defaultReticleDistance: 20
+  overrideCameraRayIntersectionDistance: 0
 --- !u!1 &726303237
 GameObject:
   m_ObjectHideFlags: 0
@@ -2696,7 +2693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 13.000187, y: 109.00018}
+  m_AnchoredPosition: {x: 13.000187, y: 52}
   m_SizeDelta: {x: -359.6, y: -299.10004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1189110148
@@ -5871,7 +5868,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 13, y: 109}
+  m_AnchoredPosition: {x: 13, y: 52}
   m_SizeDelta: {x: -359.6, y: -299.10004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1960055796
@@ -5960,8 +5957,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b185dc34a16a7487e99971711f86abc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pose: 0
-  armModel: {fileID: 0}
 --- !u!114 &2034184362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5974,15 +5969,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dda4bb2d5509e44e978d2bf56e25d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addedElbowHeight: 0
-  addedElbowDepth: 0
-  pointerTiltAngle: 15
-  fadeDistanceFromFace: 0.32
+  elbowRestPosition: {x: 0.195, y: -0.5, z: 0.005}
+  wristRestPosition: {x: 0, y: 0, z: 0.25}
+  controllerRestPosition: {x: 0, y: 0, z: 0.05}
+  armExtensionOffset: {x: -0.13, y: 0.14, z: 0.08}
+  elbowBendRatio: 0.6
+  fadeControllerOffset: 0
+  fadeDistanceFromHeadForward: 0.25
+  fadeDistanceFromHeadSide: 0.15
   tooltipMinDistanceFromFace: 0.45
   tooltipMaxAngleFromCamera: 80
-  followGaze: 1
-  useAccelerometer: 0
-  isLockedToHead: 0
+  isLockedToNeck: 0
 --- !u!114 &2034184363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5995,12 +5992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311793381eb9d45149dc1a422000a9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserVisual: {fileID: 688258693}
-  controllerVisual: {fileID: 664466206}
   armModel: {fileID: 2034184362}
-  isLaserVisualEnabled: 1
-  isControllerVisualEnabled: 1
-  isVisibleWhenDisconnected: 0
+  isDeactivatedWhenDisconnected: 1
 --- !u!1 &2078691604
 GameObject:
   m_ObjectHideFlags: 0
@@ -6194,7 +6187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2144301554
 Transform:
   m_ObjectHideFlags: 0

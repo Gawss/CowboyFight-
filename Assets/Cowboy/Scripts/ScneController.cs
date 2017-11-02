@@ -46,6 +46,7 @@ public class ScneController : MonoBehaviour {
         startGame = GetComponent<AudioSource>();
         killSpreeNum = killingSpreeNum.GetComponent<Text>();
         enemysCaptured_Num = enemysCapturedNum.GetComponent<Text>();
+        ResetplayerPosition();
     }
 
     // Update is called once per frame
